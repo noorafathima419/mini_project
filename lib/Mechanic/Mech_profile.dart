@@ -55,7 +55,7 @@ class _MechProfileState extends State<MechProfile> {
                   child: Text(
                     "Name",
                     style: GoogleFonts.poppins(
-                        fontSize: 20.sp, fontWeight: FontWeight.w500),
+                        fontSize: 18.sp, fontWeight: FontWeight.w500),
                   ),
                 ),
               )
@@ -67,7 +67,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "name",
                       style: GoogleFonts.poppins(
@@ -76,7 +76,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -105,7 +105,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "username",
                       style: GoogleFonts.poppins(
@@ -114,7 +114,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -145,7 +145,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "phone number",
                       style: GoogleFonts.poppins(
@@ -154,7 +154,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -185,7 +185,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "enter email",
                       style: GoogleFonts.poppins(
@@ -194,7 +194,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -225,7 +225,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "work experience",
                       style: GoogleFonts.poppins(
@@ -234,7 +234,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -263,7 +263,7 @@ class _MechProfileState extends State<MechProfile> {
                 padding: EdgeInsets.only(left: 30.w),
                 child: Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
                     child: Text(
                       "Enter your shop name",
                       style: GoogleFonts.poppins(
@@ -272,7 +272,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -310,7 +310,7 @@ class _MechProfileState extends State<MechProfile> {
                           color: Colors.grey),
                     ),
                   ),
-                  height: 60.h,
+                  height: 50.h,
                   width: 350.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -322,7 +322,7 @@ class _MechProfileState extends State<MechProfile> {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 100.w, top: 10.h),
+                padding: EdgeInsets.only(left: 100.w, ),
                 child: Container(
                   child: Center(
                     child: Text(

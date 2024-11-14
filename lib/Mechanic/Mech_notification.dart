@@ -16,7 +16,11 @@ class _MechNotificationState extends State<MechNotification> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffCFE2FF),
-        leading: Icon(Icons.arrow_back_ios_sharp),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_sharp)),
         title: Padding(
           padding: EdgeInsets.only(left: 80.w),
           child: Text("Notification"),
@@ -38,7 +42,7 @@ class _MechNotificationState extends State<MechNotification> {
                             child: Text(
                               "Admin Notification",
                               style: GoogleFonts.poppins(
-                                  color: Colors.grey, fontSize: 18.sp),
+                                  color: Colors.grey, fontSize: 15.sp),
                             ),
                           ),
                           Padding(
@@ -52,13 +56,13 @@ class _MechNotificationState extends State<MechNotification> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 50.h, left: 190.w),
+                        padding: EdgeInsets.only(top: 35.h, left: 190.w),
                         child: Row(
                           children: [
                             Text(
                               "10/05/2023",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18.sp, color: Colors.grey),
+                                  fontSize: 15.sp, color: Colors.grey),
                             )
                           ],
                         ),
@@ -70,7 +74,7 @@ class _MechNotificationState extends State<MechNotification> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.r),
                       color: Colors.white,
-                      border: Border.all(width: 1.w, color: Colors.black)),
+                      border: Border.all(width: 2.w, color: Colors.black)),
                 ),
               )
             ],

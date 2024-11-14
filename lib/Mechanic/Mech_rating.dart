@@ -16,7 +16,11 @@ class _MechRatingState extends State<MechRating> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffCFE2FF),
-        leading: Icon(Icons.arrow_back_ios_sharp),
+        leading:IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_sharp)),
         title: Padding(
           padding: EdgeInsets.only(left: 80.w),
           child: Text("Rating"),
@@ -57,111 +61,147 @@ class _MechRatingState extends State<MechRating> {
                               backgroundColor: Color(0xffCFE2FF),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 60.w),
-                            child: Text(
-                              "Engine Work",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 10.w),
-                            child: Text(
-                              "Name",
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15.sp),
-                            ),
-                          ),
-                          Row(
+                          Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(
-                                  left: 60.w,
-                                ),
-                                child: Text(
-                                  "Date",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.w400),
+                                padding: EdgeInsets.only(left: 40.w, top: 10.h),
+                                child: Row(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        "engine work",
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15.sp),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 80.w),
+                                padding: EdgeInsets.only(left: 40.w),
+                                child: Row(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        "Date",
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15.sp),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 40.w),
+                                child: Row(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        "Time",
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15.sp),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 40.w),
+                                child: Row(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        "Place",
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15.sp),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 30.w),
                                 child: Row(
                                   children: [
                                     Text(
                                       "Rating",
-                                      style: GoogleFonts.poppins(fontSize: 11),
-                                    )
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12.sp),
+                                    ),
                                   ],
                                 ),
-                              )
+                              ),
+                              Padding(
+                                padding:  EdgeInsets.only(left: 30.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.yellowAccent,
+                                      size: 10.sp,
+                                    ), Padding(
+                                      padding:  EdgeInsets.only(left: 5.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.yellowAccent,
+                                            size: 10.sp,
+                                          ), Row(
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.yellowAccent,
+                                                size: 10.sp,
+                                              ), Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.yellowAccent,
+                                                    size: 10.sp,
+                                                  ), Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.star_border,
+                                                        color: Colors.black,
+                                                        size: 10.sp,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),Row(children: [Padding(
+                                padding:  EdgeInsets.only(left: 20.w),
+                                child: Container(child: Text("4/5"),),
+                              )],)
                             ],
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 120.w),
-                            child: Text(
-                              "Time",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 70.w),
-                            child: Icon(
-                              Icons.star,
-                              size: 11,color: Colors.yellow,
-                            ),
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 11,color: Colors.yellow
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 11,color: Colors.yellow
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 11,color: Colors.yellow
-                          ),Icon(
-                              Icons.star,
-                              size: 11,color: Colors.black
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 120.w),
-                            child: Text(
-                              "Place",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w400),
-                            ),
-                          ),Padding(
-                            padding:  EdgeInsets.only(left: 90.w),
-                            child: Text("4/7"),
                           )
                         ],
                       ),
+
                     ],
                   ),
                   decoration: BoxDecoration(
                       color: Color(0xffCFE2FF),
                       borderRadius: BorderRadius.circular(15.r)),
                   width: 320.w,
-                  height: 145.h,
+                  height: 160.h,
                 ),
               )
             ],

@@ -16,35 +16,30 @@ class _AdminUserState extends State<AdminUser> {
     return Scaffold(
         backgroundColor: Color(
           0xffCFE2FF,
-        ),
-        body: Column(children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 20.h),
-                child: Icon(
-                  Icons.arrow_back_ios_sharp,
-                  size: 20,
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 140.w, top: 50.h),
-                  child: CircleAvatar(
-                    child: Image(
-                      image: AssetImage("assets/men.png"),
-                      fit: BoxFit.cover,
+        ),appBar:AppBar(leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(Icons.arrow_back_ios_new_sharp)),),
+        body:
+          Column(
+            children:[ Row(
+              children: [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 140.w, top: 50.h),
+                    child: CircleAvatar(
+                      child: Image(
+                        image: AssetImage("assets/men.png"),
+                        fit: BoxFit.cover,
+                      ),
+                      radius: 70.r,
                     ),
-                    radius: 70.r,
                   ),
-                ),
-              )
-            ],
-          ),
+                )
+              ],
+            ),
+
           Row(
             children: [
               Container(
@@ -221,8 +216,9 @@ class _AdminUserState extends State<AdminUser> {
                 ),
               )
             ],
-          )
-        ]));
-    ();
+    )
+   ] )
+    );
+
   }
 }

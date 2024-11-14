@@ -14,11 +14,14 @@ class Tapbar extends StatefulWidget {
 class _TapbarState extends State<Tapbar> {
   @override
   Widget build(BuildContext context) {
-    return  DefaultTabController(
+    return DefaultTabController(
       length: 2, // Number of tabs
       child: Scaffold(
-        appBar: AppBar(
-
+        appBar: AppBar(  backgroundColor: Color(0xffE8F1FF),
+          leading: CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage("assets/profile.jpeg"),
+          ),
           bottom: TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: Colors.black,
@@ -52,7 +55,6 @@ class _TapbarState extends State<Tapbar> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

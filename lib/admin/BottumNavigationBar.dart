@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Admin_home.dart';
+import 'Admin_notification.dart';
 import 'Admin_payment.dart';
 import 'Mechanic_detail.dart';
 import 'Tapbar.dart';
@@ -20,6 +21,7 @@ class _BottomnavigathionbarWidgetsState
   static const List<dynamic> _widgetOptions = [
     Tapbar(),
     AdminPayment(),
+    AdminNotification(),
 
   ];
   void _onItemTapped(int index) {

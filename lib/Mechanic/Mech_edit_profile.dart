@@ -49,7 +49,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       image: AssetImage("assets/men.png"),
                       fit: BoxFit.cover,
                     ),
-                    radius: 70.r,
+                    radius: 60.r,
                   ),
                 ),
               )
@@ -67,7 +67,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -91,7 +91,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -115,7 +115,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -139,7 +139,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -163,7 +163,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -187,7 +187,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,
@@ -211,7 +211,7 @@ class _MechEditProfileState extends State<MechEditProfile> {
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey),
+                          color: Colors.black),
                     ),
                   ),
                   width: 320.w,

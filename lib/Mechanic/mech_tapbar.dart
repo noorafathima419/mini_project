@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'Mech_edit_profile.dart';
+import 'Mech_notification.dart';
 import 'Mech_request_home.dart';
 import 'Mech_service_home.dart';
 
@@ -20,10 +22,40 @@ class _MechTapbarState extends State<MechTapbar> {
       length: 2, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          leading: CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage("assets/men.png"),
-          ),
+          leading: Column(
+            children:[ Expanded(
+              child: InkWell(onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return MechEditProfile();
+                  },
+                ));
+              },
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage("assets/men.png"),
+                ),
+              ),
+            ),
+         ] ),
+          actions: [
+            Column(
+              children:[ Expanded(
+                child: InkWell(onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return MechNotification();
+                    },
+                  ));
+                },
+                  child: Container(child: Image(image: AssetImage("assets/notification.png")),
+                    width: 30.w,
+                    height: 30.h,
+                  ),
+                ),
+              ),
+            ])
+          ],
           bottom: TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: Colors.black,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Mech_bottomnavigationbar.dart';
+
 class MechSighnUp extends StatefulWidget {
   const MechSighnUp({super.key});
 
@@ -14,19 +16,13 @@ class _MechSighnUpState extends State<MechSighnUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffCFE2FF),
+      backgroundColor: Color(0xffCFE2FF),appBar: AppBar(leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(Icons.arrow_back_ios_new_sharp)),backgroundColor: Color(0xffCFE2FF),),
       body: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30.h, left: 10.w),
-                child: Container(
-                  child: Icon(Icons.arrow_back_ios_sharp),
-                ),
-              )
-            ],
-          ),
           Row(
             children: [
               Padding(
@@ -281,22 +277,32 @@ class _MechSighnUpState extends State<MechSighnUp> {
           ),Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 120.w, top: 50.h),
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      "Sign Up",
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.sp),
+                padding: EdgeInsets.only(left: 120.w, top: 30.h),
+                child: InkWell(onTap: () {
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return MechBottomnavigationbar();
+                      },
+                    ));
+                  }
+                },
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        "Sign Up",
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.sp),
+                      ),
                     ),
+                    height: 50.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        color: Color(0xff2357D9)),
                   ),
-                  height: 50.h,
-                  width: 200.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Color(0xff2357D9)),
                 ),
               ),
             ],

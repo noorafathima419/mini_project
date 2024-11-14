@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Add_Admin.dart';
+
 class AdminNotification extends StatefulWidget {
   const AdminNotification({super.key});
 
@@ -13,7 +15,7 @@ class AdminNotification extends StatefulWidget {
 class _AdminNotificationState extends State<AdminNotification> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xffE8F1FF),
       appBar: AppBar(
         backgroundColor: Color(0xffE8F1FF),
@@ -22,71 +24,92 @@ class _AdminNotificationState extends State<AdminNotification> {
           backgroundImage: AssetImage("assets/profile.jpeg"),
         ),
       ),
-      body: ListView.separated(
-          itemBuilder: (context, index) {
-            return Container(width: 20.w, height: 20.h);
-          },
-          separatorBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(left: 20.w, right: 20.r),
-              child: Container(
-                child: Column(
-                  children: [
-                    Row(
+      body: Column(
+        children: [Expanded(
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                return Container(width: 20.w, height: 20.h);
+              },
+              separatorBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(left: 20.w, right: 20.r),
+                  child: Container(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            "Heading",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20.sp, fontWeight: FontWeight.w400),
-                          ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Text(
+                                "Heading",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 20.sp, fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
                         ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Text(
+                                "Lorem ipsum is a placeholder text commonly",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Text(
+                                "used to demonstrate the visual form of a ",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Text(
+                                "document or a typeface without relying  . . . . .  ",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                        )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            "Lorem ipsum is a placeholder text commonly",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15.sp, fontWeight: FontWeight.w400),
-                          ),
-                        )
-                      ],
-                    ), Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            "used to demonstrate the visual form of a ",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15.sp, fontWeight: FontWeight.w400),
-                          ),
-                        )
-                      ],
-                    ), Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            "document or a typeface without relying  . . . . .  ",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15.sp, fontWeight: FontWeight.w400),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                width: 350,
-                height: 120,
-                color: Colors.white,
-              ),
-            );
-          },
-          itemCount: 6),
+                    width: 350,
+                    height: 120,
+                    color: Colors.white,
+                  ),
+                );
+              },
+              itemCount: 6),
+        ),
+      Padding(
+      padding: EdgeInsets.only(left: 260.w),
+      child: FloatingActionButton(
+        shape: CircleBorder(side: BorderSide(width: 1.w)),
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return AddAdmin();
+            },
+          ));
+        },
+      ),
+    ),
+    ]
+    )
     );
   }
 }

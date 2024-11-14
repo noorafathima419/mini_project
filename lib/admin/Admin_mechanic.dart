@@ -15,18 +15,14 @@ class _AdminMechanicState extends State<AdminMechanic> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xffCFE2FF),
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios_new_sharp)),
+        ),
         body: Column(children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 10.h),
-                child: Icon(
-                  Icons.arrow_back_ios_sharp,
-                  size: 30,
-                ),
-              )
-            ],
-          ),
           Row(
             children: [
               Center(
@@ -74,7 +70,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
             children: [
               Container(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 30.w,),
+                  padding: EdgeInsets.only(
+                    left: 30.w,
+                  ),
                   child: Text(
                     "Mech username",
                     style: GoogleFonts.poppins(
@@ -306,11 +304,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
                 padding: EdgeInsets.only(top: 30.h, left: 60.w),
                 child: Container(
                   child: Center(
-                    child: Text(
-                      "Accept",
+                    child: Text("Accept",
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 20.sp)
-                    ),
+                            color: Colors.white, fontSize: 20.sp)),
                   ),
                   width: 150.w,
                   height: 60.h,
@@ -324,11 +320,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
                 padding: EdgeInsets.only(top: 30.h, left: 10.w),
                 child: Container(
                   child: Center(
-                    child: Text(
-                      "Reject",
+                    child: Text("Reject",
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 20.sp)
-                    ),
+                            color: Colors.white, fontSize: 20.sp)),
                   ),
                   height: 60.h,
                   width: 150.w,

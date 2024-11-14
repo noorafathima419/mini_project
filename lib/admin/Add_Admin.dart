@@ -16,22 +16,13 @@ class _AddAdminState extends State<AddAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffCFE2FF),
+      backgroundColor: Color(0xffCFE2FF),appBar: AppBar(leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(Icons.arrow_back_ios_new_sharp)),),
       body: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30.h, left: 20),
-                child: Container(
-                  child: Icon(
-                    Icons.arrow_back_ios_sharp,
-                    size: 30,
-                  ),
-                ),
-              )
-            ],
-          ),
           Row(
             children: [
               Container(

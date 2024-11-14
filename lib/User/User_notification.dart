@@ -15,7 +15,11 @@ class _UserNotificationState extends State<UserNotification> {
   Widget build(BuildContext context) {
     return  Scaffold(appBar: AppBar(
       backgroundColor: Color(0xffCFE2FF),
-      leading: Icon(Icons.arrow_back_ios_sharp),
+      leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios_new_sharp)),
       title: Padding(
         padding: EdgeInsets.only(left: 80.w),
         child: Text("Notification"),

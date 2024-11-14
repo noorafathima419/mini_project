@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Mech_bottomnavigationbar.dart';
+import 'Mech_sighn_up.dart';
+
 class MechLogin extends StatefulWidget {
   const MechLogin({super.key});
 
@@ -16,84 +19,74 @@ class _MechLoginState extends State<MechLogin> {
     final form_key = GlobalKey<FormState>();
     return Scaffold(
         backgroundColor: Color(0xffCFE2FF),
-        body: ListView(children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30.h, left: 10.w),
-                child: Container(
-                  child: Icon(Icons.arrow_back_ios_sharp),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 100.w, top: 60.h),
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/admin.png"))),
-                  height: 200.h,
-                  width: 200.w,
-                  //
-                  // color: Colors.grey,
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 150.w, top: 20.h),
-                  child: Text(
-                    "Login",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 40.sp),
+        body: Form(key: form_key,
+          child: ListView(children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 100.w, top: 60.h),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/admin.png"))),
+                    height: 200.h,
+                    width: 200.w,
+                    //
+                    // color: Colors.grey,
                   ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 50.h, left: 30.w),
-                child: Center(
-                  child: Text("Enter Username",
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600, fontSize: 20.sp)),
-                ),
-              )
-            ],
-          ),
-          Form(
-            key: form_key,
-            child: Padding(
-              padding: EdgeInsets.only(left: 30.w, right: 40.r),
-              child: Container(
-                // width: 300.w,
-                child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Empty username";
-                    }
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.r)),
-                    prefixIconColor: Colors.white,
-                    suffixIconColor: Colors.pink,
-                    hintText: "username",
-                    fillColor: Colors.white,
-                    filled: true,
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 150.w, top: 20.h),
+                    child: Text(
+                      "Login",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 40.sp),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 50.h, left: 30.w),
+                  child: Center(
+                    child: Text("Enter Username",
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w600, fontSize: 20.sp)),
+                  ),
+                )
+              ],
+            ),
+             Padding(
+                padding: EdgeInsets.only(left: 30.w, right: 40.r),
+                child: Container(
+                  // width: 300.w,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Empty username";
+                      }
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.r)),
+                      prefixIconColor: Colors.white,
+                      suffixIconColor: Colors.pink,
+                      hintText: "username",
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
+
+
           Row(
             children: [
               Padding(
@@ -141,8 +134,12 @@ class _MechLoginState extends State<MechLogin> {
                 padding: EdgeInsets.only(left: 100.w, top: 20.h),
                 child: InkWell(
                   onTap: () {
-                    if (form_key.currentState!.validate()) {
-                      print("object");
+                    {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return MechBottomnavigationbar();
+                        },
+                      ));
                     }
                   },
                   child: Container(
@@ -175,15 +172,27 @@ class _MechLoginState extends State<MechLogin> {
                       fontWeight: FontWeight.w600, fontSize: 20),
                 ),
               ),
-              Text(
-                "Sign Up",
-                style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.indigoAccent),
+              TextButton(
+                onPressed: () {
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return MechSighnUp();
+                      },
+                    ));
+                  }
+                },
+                child: Text(
+                  "Sign Up",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.indigoAccent),
+                ),
               )
             ],
           )
-        ]));
+        ])
+        ));
   }
 }

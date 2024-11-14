@@ -15,14 +15,12 @@ class _MechserviceAcceptRejectState extends State<MechserviceAcceptReject> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white,appBar: AppBar(leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(Icons.arrow_back_ios_new_sharp)),backgroundColor: Colors.white,),
         body: Column(children: [
-          Padding(
-            padding: EdgeInsets.only(top: 30.h, left: 10.w),
-            child: Row(
-              children: [Icon(Icons.arrow_back_ios_sharp)],
-            ),
-          ),
           Row(
             children: [
               Center(
@@ -149,10 +147,12 @@ class _MechserviceAcceptRejectState extends State<MechserviceAcceptReject> {
                                 width: 110.w,
                                 height: 40.h,
                               ),
-                            ),Row(
+                            ),
+                            Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(top: 50.h, left: 30.w),
+                                  padding:
+                                      EdgeInsets.only(top: 50.h, left: 30.w),
                                   child: Container(
                                     child: Center(
                                       child: Text(
@@ -164,9 +164,9 @@ class _MechserviceAcceptRejectState extends State<MechserviceAcceptReject> {
                                       ),
                                     ),
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        color: Color(0xffCD4949
-                                        )),
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        color: Color(0xffCD4949)),
                                     width: 110.w,
                                     height: 40.h,
                                   ),

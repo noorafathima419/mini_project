@@ -11,6 +11,72 @@ class MechService extends StatefulWidget {
 }
 
 class _MechServiceState extends State<MechService> {
+  void _showAlertDialog(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      backgroundColor: Color(0xffCFE2FF),
+      title: Text("Add Service",
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w500)),
+      content: SizedBox(
+        height: 100,
+        child: Column(
+          children: [
+            Container(
+              width: 250.w,
+              height: 45.h,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.r)),
+            )
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20.w),
+                      child: Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 80.w, top: 10.h),
+                          child: Text(
+                            "Add",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        height: 50.h,
+                        width: 180.w,
+                        decoration: BoxDecoration(
+                            color: Color(0xff2357D9),
+                            borderRadius: BorderRadius.circular(10.sp)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          onPressed: () {
+            print("pressed");
+            Navigator.of(context).pop(); // Close the dialog
+          },
+        )
+      ],
+    );
+
+    // Show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,7 +224,14 @@ class _MechServiceState extends State<MechService> {
               width: 332.w,
               height: 290.h,
             ),
-          )
+          ),Padding(
+            padding: EdgeInsets.only(top: 280.h, left: 280.w),
+            child: FloatingActionButton(
+              onPressed: () => _showAlertDialog(context),
+              shape: CircleBorder(side: BorderSide(width: 1.w)),
+              child: Icon(Icons.add),
+            ),
+          ),
         ],
       ),
     );

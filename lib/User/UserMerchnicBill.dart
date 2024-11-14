@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'UserPaymentPage.dart';
+import 'UserRatingPage.dart';
+
 class Usermerchnicbill extends StatefulWidget {
   const Usermerchnicbill({super.key});
 
@@ -16,7 +19,11 @@ class _UsermerchnicbillState extends State<Usermerchnicbill> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffCFE2FF),
-        leading: Icon(Icons.arrow_back_ios_sharp),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_sharp)),
         title: Padding(
           padding: EdgeInsets.only(left: 80.w),
           child: Text("Mechanic Bill"),
@@ -142,10 +149,18 @@ class _UsermerchnicbillState extends State<Usermerchnicbill> {
                                   Padding(
                                     padding:
                                         EdgeInsets.only(left: 5.w, top: 10.h),
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Colors.black,
-                                      size: 18.sp,
+                                    child: InkWell(onTap: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) {
+                                          return Userratingpage();
+                                        },
+                                      ));
+                                    },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.black,
+                                        size: 18.sp,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -192,21 +207,29 @@ class _UsermerchnicbillState extends State<Usermerchnicbill> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 120.w, top: 100.h),
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      "Payment",
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.sp),
+                child: InkWell(onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Userpaymentpage();
+                    },
+                  ));
+                },
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        "Payment",
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.sp),
+                      ),
                     ),
+                    height: 50.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        color: Color(0xff2357D9)),
                   ),
-                  height: 50.h,
-                  width: 200.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Color(0xff2357D9)),
                 ),
               ),
             ],

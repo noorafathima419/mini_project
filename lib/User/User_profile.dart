@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'UserMechnicTapbar.dart';
+
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
 
@@ -14,19 +16,12 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white,appBar: AppBar(leading:  IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(Icons.arrow_back_ios_new_sharp)),),
         body: Column(children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30.h, left: 10.w),
-                child: Icon(
-                  Icons.arrow_back_ios_sharp,
-                  size: 30,
-                ),
-              )
-            ],
-          ),
           Row(
             children: [
               Center(
@@ -168,32 +163,35 @@ class _UserProfileState extends State<UserProfile> {
                 ),
               )
             ],
-          ), Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 100.w, top: 150.h),
-                child: InkWell(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        "Done",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontSize: 25.sp),
-                      ),
-                    ),
-                    width: 200.w,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: Color(0xff2357D9)
+          ),Row(children: [
+            Padding(
+              padding: EdgeInsets.only(left: 90, top: 300),
+              child: InkWell(onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return Usermechnictapbar();
+                  },
+                ));
+              },
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      "Done",
+                      style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20),
                     ),
                   ),
+                  height: 50,
+                  width: 250,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xff2357D9)),
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ])
         ]));
   }
 }
