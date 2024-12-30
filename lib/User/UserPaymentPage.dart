@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,15 +9,20 @@ import 'package:mini_project/admin/Admin_mechanic.dart';
 import 'package:mini_project/admin/login.dart';
 
 import 'UserMechnicTapbar.dart';
+import 'UserRatingPage.dart';
 
 class Userpaymentpage extends StatefulWidget {
-  const Userpaymentpage({super.key});
+  const Userpaymentpage({super.key, required this.id, required this.name});
+  final id;
+  final name;
 
   @override
   State<Userpaymentpage> createState() => _UserpaymentpageState();
 }
 
 class _UserpaymentpageState extends State<Userpaymentpage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,17 +60,21 @@ class _UserpaymentpageState extends State<Userpaymentpage> {
           Row(children: [
             Padding(
               padding: EdgeInsets.only(left: 90, top: 300),
-              child: InkWell(onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return Usermechnictapbar();
-                  },
-                ));
-              },
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Userratingpage(
+                        id: widget.id,
+                        name: widget.name,
+                      );
+                    },
+                  ));
+                },
                 child: Container(
                   child: Center(
                     child: Text(
-                      "Back to home page",
+                      "Rate the work",
                       style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

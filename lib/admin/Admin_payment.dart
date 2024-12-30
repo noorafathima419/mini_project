@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,14 +25,23 @@ class _AdminPaymentState extends State<AdminPayment> {
           backgroundImage: AssetImage("assets/profile.jpeg"),
         ),
       ),
-      body: ListView.separated(
-          itemBuilder: (context, index) {
-            return Container(width: 20.w, height: 20.h);
-          },
-          separatorBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(left: 20.w, right: 20.r),
-              child: Container(
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection("Request")
+            .where("Payment", isEqualTo: 5)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData) {
+            return Center(child: Text("no data found"));
+          }
+          var completed = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: completed.length,
+            itemBuilder: (context, index) {
+              return Card(
                 child: Column(
                   children: [
                     Row(
@@ -39,7 +49,7 @@ class _AdminPaymentState extends State<AdminPayment> {
                         Padding(
                           padding: EdgeInsets.only(left: 20.w),
                           child: Text(
-                            "Name",
+                            completed[index]["user_name"],
                             style: GoogleFonts.poppins(
                                 fontSize: 20.sp, fontWeight: FontWeight.w400),
                           ),
@@ -55,29 +65,31 @@ class _AdminPaymentState extends State<AdminPayment> {
                         Padding(
                           padding: EdgeInsets.only(left: 20.w),
                           child: Text(
-                            "\u20B95455/-",
+                            "\u20B9${completed[index]["work_amount"]}",
                             style: GoogleFonts.poppins(
                                 fontSize: 15.sp, fontWeight: FontWeight.w400),
                           ),
                         )
                       ],
-                    ), Row(
+                    ),
+                    Row(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 20.w),
                           child: Text(
-                            "Service",
+                            completed[index]["work"],
                             style: GoogleFonts.poppins(
                                 fontSize: 15.sp, fontWeight: FontWeight.w400),
                           ),
                         )
                       ],
-                    ), Row(
+                    ),
+                    Row(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 20.w),
                           child: Text(
-                            "Mechanic name",
+                            completed[index]["mech_name"]  ,
                             style: GoogleFonts.poppins(
                                 fontSize: 15.sp, fontWeight: FontWeight.w400),
                           ),
@@ -86,13 +98,11 @@ class _AdminPaymentState extends State<AdminPayment> {
                     )
                   ],
                 ),
-                width: 350,
-                height: 120,
-                color: Colors.white,
-              ),
-            );
-          },
-          itemCount: 6),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class MechNotification extends StatefulWidget {
   const MechNotification({super.key});
@@ -11,6 +12,10 @@ class MechNotification extends StatefulWidget {
 }
 
 class _MechNotificationState extends State<MechNotification> {
+  String formattedData = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String formattedTime = DateFormat('HH:mm').format(DateTime.now());
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

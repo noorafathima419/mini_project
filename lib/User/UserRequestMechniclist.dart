@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'MechnicFailedPage.dart';
 import 'UserMerchnicBill.dart';
 
 class Userrequestmechniclist extends StatefulWidget {
@@ -14,136 +17,277 @@ class Userrequestmechniclist extends StatefulWidget {
 
 class _UserrequestmechniclistState extends State<Userrequestmechniclist> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user_data();
+  }
+
+  Future<void> user_data() async {
+    SharedPreferences user_data = await SharedPreferences.getInstance();
+    setState(() {
+      userid = user_data.getString("userid");
+    });
+    print("success");
+  }
+
+  var userid;
+
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(body: Column(
-      children:[ Expanded(
-        child: InkWell(onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) {
-              return Usermerchnicbill();
-            },
-          ));
-        },
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 20.w,
-                  height: 20.h,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(left: 30.w, right: 30.r),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 40.h, left: 20.w),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: InkWell(
+              onTap: () {},
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Request")
+                      .where("user_id", isEqualTo: userid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (!snapshot.hasData) {
+                      return Center(child: Text("no data found"));
+                    }
+                    var mechh = snapshot.data!.docs;
+
+                    return ListView.builder(
+                      itemCount: mechh.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            left: 10.w,
+                          ),
+                          child: Card(
+                            color: Color(0xffCFE2FF),
+                            child: InkWell(
+                              onTap: () {
+                                mechh[index]["Payment"] == 5
+                                    ? ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                        content: Text('Payment completed'),
+                                        backgroundColor: Colors.green,
+                                      ))
+                                    : mechh[index]["Payment"] == 4
+                                    ? Navigator.of(context)
+                                    .push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return Mechnicfailedpage(id:mechh[index].id,name:mechh[index]["mech_name"]
+
+                                    );
+                                  },
+                                ))
+                                        : mechh[index]["Payment"] == 3
+                                            ? Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                builder: (context) {
+                                                  return Usermerchnicbill(id:mechh[index].id,name:mechh[index]["mech_name"]
+
+                                                  );
+                                                },
+                                              ))
+                                            : mechh[index]["Status"] == 2
+                                                ? ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        'Request Rejected'),
+                                                    backgroundColor: Colors.red,
+                                                  ))
+                                                : mechh[index]["Status"] == 1
+                                                    ? ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            'Request Accepted'),
+                                                        backgroundColor:
+                                                            Colors.red,
+                                                      ))
+                                                    : ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            'Request Pending'),
+                                                        backgroundColor:
+                                                            Colors.red,
+                                                      ));
+                              },
                               child: Container(
-                                height: 50.h,
-                                width: 50.w,
-                                decoration: BoxDecoration(
-                                   ),
+                                width: 350.w,
+                                height: 150.h,
+                                child: Row(
+                                  children: [
+                                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          mechh[index]["work"],
+                                          style: GoogleFonts.poppins(
+                                              fontWeight:
+                                                  FontWeight.w500,
+                                              fontSize: 16.sp),
+                                        ),
+                                        Text(
+                                          mechh[index]["Date"],
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16.sp,
+                                              fontWeight:
+                                                  FontWeight.w500),
+                                        ),
+                                        Text(
+                                          mechh[index]["Time"],
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16.sp,
+                                              fontWeight:
+                                                  FontWeight.w500),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 19.w),
+                                          child: Row(
+                                            children: [
+                                              mechh[index]["Payment"] ==
+                                                      5
+                                                  ? Container(
+                                                      child: Center(
+                                                        child: Text(
+                                                          "Paid",
+                                                          style: GoogleFonts.poppins(color: Colors.white,
+                                                              fontSize:
+                                                                  16.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                      ),
+                                                      width: 100.w,
+                                                      height: 30.h,
+                                                      decoration: BoxDecoration(
+                                                          color: Color(
+                                                              0xff007B23),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.r)),
+                                                    )
+                                                  : mechh[index][
+                                                              "Payment"] ==
+                                                          4
+                                                      ? Container(
+                                                          child: Text(
+                                                            "failed",
+                                                            style: GoogleFonts.poppins(
+                                                                fontSize: 16
+                                                                    .sp,
+                                                                fontWeight:
+                                                                    FontWeight.w500),
+                                                          ),
+                                                          width: 100.w,
+                                                          height: 30.h,
+                                                          decoration: BoxDecoration(
+                                                              color: Color(
+                                                                  0xff007B23),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(
+                                                                      10.r)),
+                                                        )
+                                                      : mechh[index][
+                                                                  "Payment"] ==
+                                                              3
+                                                          ? Container(
+                                                              child:
+                                                                  Text(
+
+                                                                "pay",
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        16.sp,
+                                                                    fontWeight: FontWeight.w500),
+                                                              ),
+                                                              width:
+                                                                  100.w,
+                                                              height:
+                                                                  30.h,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .yellow,
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(10.r)),
+                                                            )
+                                                          : mechh[index]
+                                                                      [
+                                                                      "Status"] ==
+                                                                  2
+                                                              ? Container(
+                                                                  child:
+                                                                      Text(
+                                                                    "Accepeted",
+                                                                    style:
+                                                                        GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w500),
+                                                                  ),
+                                                                  width:
+                                                                      100.w,
+                                                                  height:
+                                                                      30.h,
+                                                                  decoration: BoxDecoration(
+                                                                      color: Color(0xff007B23),
+                                                                      borderRadius: BorderRadius.circular(10.r)),
+                                                                )
+                                                              : mechh[index]["Status"] ==
+                                                                      1
+                                                                  ? Container(
+                                                                      child: Text(
+                                                                        "Reject",
+                                                                        style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w500),
+                                                                      ),
+                                                                      width: 100.w,
+                                                                      height: 30.h,
+                                                                      decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(10.r)),
+                                                                    )
+                                                                  : Container(
+                                                                      child: Text(
+                                                                        "Pending",
+                                                                        style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w500),
+                                                                      ),
+                                                                      width: 100.w,
+                                                                      height: 30.h,
+                                                                      decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10.r)),
+                                                                    )
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10.w),
+                                              child: Text(
+                                                mechh[index]["location"],
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16.sp,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                      EdgeInsets.only(left: 10.w, top: 10.h),
-                                      child: Text(
-                                        "Fuel leaking",
-                                        style: GoogleFonts.poppins(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 1.w),
-                                      child: Text(
-                                        "Date",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 115.w),
-                                      child: Text(
-                                        "Time",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:  EdgeInsets.only(left: 19.w),
-                                      child: Row(
-                                        children: [
-                                          Container(child: Center(
-                                            child: Text(
-                                              "Payment Success",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ),
-                                            width: 100.w,
-                                            height: 30.h,
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff007B23),
-                                                borderRadius:
-                                                BorderRadius.circular(10.r)),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10.w),
-                                      child: Text(
-                                        "Place",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    width: 350.w,
-                    height: 150.h,
-                    decoration: BoxDecoration(
-                        color: Color(0xffCFE2FF),
-                        borderRadius: BorderRadius.circular(20.r)),
-                  ),
-                );
-              },
-              itemCount: 4),
-        ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+            ),
+          )
+        ],
       ),
-  ]  ),
-
-        );
+    );
   }
 }

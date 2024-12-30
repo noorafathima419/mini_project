@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'Mech_bottomnavigationbar.dart';
+import 'mech_login.dart';
 
 class MechSighnUp extends StatefulWidget {
   const MechSighnUp({super.key});
@@ -13,302 +15,349 @@ class MechSighnUp extends StatefulWidget {
 }
 
 class _MechSighnUpState extends State<MechSighnUp> {
+  final form_key = GlobalKey<FormState>();
+
+  TextEditingController namectrl = TextEditingController();
+  TextEditingController numberctrl = TextEditingController();
+  TextEditingController emailctrl = TextEditingController();
+  TextEditingController experiencectrl = TextEditingController();
+  TextEditingController shopctrl = TextEditingController();
+  TextEditingController passwordctrl = TextEditingController();
+  TextEditingController locationctrl = TextEditingController();
+
+  Future<void> user() async {
+    FirebaseFirestore.instance.collection("mech_register").add({
+      "name": namectrl.text,
+      "number": numberctrl.text,
+      "email": emailctrl.text,
+      "experience":experiencectrl.text,
+      "shop":shopctrl.text,
+      "password": passwordctrl.text,
+      "location":locationctrl.text,
+      "Status": 0,
+      "profile_path":
+      "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    });
+    print("Success");
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return MechLogin();
+      },
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffCFE2FF),appBar: AppBar(leading: IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        icon: Icon(Icons.arrow_back_ios_new_sharp)),backgroundColor: Color(0xffCFE2FF),),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 100.w, ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/admin.png"))),
-                  height: 200.h,
-                  width: 200.w,
-                  //
-                  // color: Colors.grey,
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 150.w,),
-                  child: Text(
-                    "Sign up",
-                    style:
-                    TextStyle(fontWeight: FontWeight.w700, fontSize: 28.sp),
+    return  Scaffold(
+      backgroundColor: Color(0xffCFE2FF),
+      body: Scaffold(
+          backgroundColor: Color(0xffCFE2FF),
+          body: Form(
+              key: form_key,
+              child: ListView(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.h, left: 130.w),
+                        child: Container(
+                          width: 140.w,
+                          height: 140.h,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("assets/admin.png"))),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w,top: 30.h),
-                  child: Text(
-                    "Enter username",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 150.w, top: 10.h),
+                        child: Text(
+                          "SIGN UP",
+                          style: GoogleFonts.poppins(
+                              fontSize: 30.sp, fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "username",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter Username",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
                   ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w),
-                  child: Text(
-                    "Enter phonenumber",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "Phone number",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
-                  ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w),
-                  child: Text(
-                    "Enter your email",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "enter email",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
-                  ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w),
-                  child: Text(
-                    "Enter your worlexperience",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "enter work experience",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
-                  ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w),
-                  child: Text(
-                    "Enter yourbwork shop name",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "work shop name",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
-                  ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 70.w),
-                  child: Text(
-                    "Enter your password",
-                    style: GoogleFonts.poppins(
-                        fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 70.w),
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 15.h, left: 20.w),
-                    child: Text(
-                      "enter your password",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
-                  ),
-                  height: 50.h,
-                  width: 286.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white),
-                ),
-              )
-            ],
-          ),Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 120.w, top: 30.h),
-                child: InkWell(onTap: () {
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return MechBottomnavigationbar();
+                  Padding(
+                    padding: EdgeInsets.only(left: 40.w, top: 3.h, right: 40.r),
+                    child: TextFormField(
+                      controller: namectrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty username";
+                        }
                       },
-                    ));
-                  }
-                },
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        "Sign Up",
-                        style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20.sp),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter username",
+                        filled: true,
+                      ),
+
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter phone number",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: numberctrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty number";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "phone number",
+                        filled: true,
+                      ),
+
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter Your Email",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: emailctrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty mail";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter mail",
+                        filled: true,
+                      ),
+
+                    ),
+                  ), Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter your workexperience",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: experiencectrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty your work experience";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter work experience",
+                        filled: true,
+                      ),
+
+                    ),
+                  ),Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter your workshop name",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: shopctrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty your workshop name";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter workshop name",
+                        filled: true,
+                      ),
+
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter Password",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: passwordctrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty password";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter password",
+                        filled: true,
+                      ),
+                      obscureText: true,
+                    ),
+                  ),Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h, left: 40.w),
+                        child: Text(
+                          "Enter location",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 40.r, left: 40.w, top: 3.h),
+                    child: TextFormField(
+                      controller: locationctrl,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Empty location";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              10.sp,
+                            )),
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                        hintText: "Enter location",
+                        filled: true,
+                      ),
+                      obscureText: true,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      if (form_key.currentState!.validate()) {
+                        user();
+                      }
+                    },
+                    child: Padding(
+                      padding:
+                      EdgeInsets.only(right: 80.r, left: 80.w, top: 50.h),
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            "SIGN UP",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18.sp,
+                                color: Colors.white),
+                          ),
+                        ),
+                        width: 200.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                            color: Color(0xff2357D9),
+                            borderRadius: BorderRadius.circular(10.sp)),
                       ),
                     ),
-                    height: 50.h,
-                    width: 200.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: Color(0xff2357D9)),
                   ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+                ],
+              ))),
     );
   }
 }

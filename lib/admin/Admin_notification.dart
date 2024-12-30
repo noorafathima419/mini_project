@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,92 +25,79 @@ class _AdminNotificationState extends State<AdminNotification> {
           backgroundImage: AssetImage("assets/profile.jpeg"),
         ),
       ),
+
+
       body: Column(
         children: [Expanded(
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Container(width: 20.w, height: 20.h);
-              },
-              separatorBuilder: (context, index) {
-                return Padding(
+          child:  StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("admin_details")
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (!snapshot.hasData) {
+                  return Center(child: Text("no data found"));
+                }
+                var admin = snapshot.data!.docs;
+                return ListView.separated(
+                    itemCount: admin.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 10,
+                        height: 10,
+                      );
+                    },
+               separatorBuilder: (context, index) {
+                       return Padding(
                   padding: EdgeInsets.only(left: 20.w, right: 20.r),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20.w),
-                              child: Text(
-                                "Heading",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20.sp, fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20.w),
-                              child: Text(
-                                "Lorem ipsum is a placeholder text commonly",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20.w),
-                              child: Text(
-                                "used to demonstrate the visual form of a ",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 20.w),
-                              child: Text(
-                                "document or a typeface without relying  . . . . .  ",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 15.sp, fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                  child: Container(width:200 .w,height: 200.h,
+                    child: Card(
+                      child: Column(
+                        children: [
+                          ListTile(title: Text(
+                            admin[index]["Heading"],
+                            style: TextStyle(fontSize: 20.sp),
+                          ) ,subtitle: Text(
+                            admin[index]["content"],
+                            style: TextStyle(fontSize: 20.sp),
+                          ),trailing:  IconButton(
+                        onPressed: () {
+                                        FirebaseFirestore.instance
+                      .collection("admin_details")
+                      .doc(admin[index].id)
+                      .delete();
+                                        },
+                                          icon: Icon(Icons.delete),),
+                          ),
+
+
+                        ],
+                      ),
                     ),
-                    width: 350,
-                    height: 120,
-                    color: Colors.white,
                   ),
+                       );
+               },
                 );
-              },
-              itemCount: 6),
+              }),
         ),
-      Padding(
-      padding: EdgeInsets.only(left: 260.w),
-      child: FloatingActionButton(
-        shape: CircleBorder(side: BorderSide(width: 1.w)),
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return AddAdmin();
-            },
-          ));
-        },
+          Padding(
+            padding: EdgeInsets.only(left: 260.w),
+            child: FloatingActionButton(
+              shape: CircleBorder(side: BorderSide(width: 1.w)),
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return AddAdmin();
+                  },
+                ));
+              },
+            ),
+          ),
+        ],
       ),
-    ),
-    ]
-    )
     );
   }
 }

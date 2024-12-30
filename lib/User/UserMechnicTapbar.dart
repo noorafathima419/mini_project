@@ -97,7 +97,7 @@ class _UsermechnictapbarState extends State<Usermechnictapbar> {
             tabs: [
               Tab(
                 child: Text(
-                  'User',
+                  'Mechanic',
                   style: TextStyle(
                     // color: Colors.white,
                     fontSize: 16.sp,
@@ -109,7 +109,7 @@ class _UsermechnictapbarState extends State<Usermechnictapbar> {
               ),
               Tab(
                 child: Text(
-                  'Mechanic',
+                  'Request',
                   style: TextStyle(
                     // color: Colors.white,
                     fontSize: 16.sp,
