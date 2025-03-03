@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Mech_edit_profile.dart';
 import 'Mech_notification.dart';
+import 'Mech_profile.dart';
 import 'Mech_request_home.dart';
 import 'Mech_service_home.dart';
 
@@ -27,7 +28,7 @@ class _MechTapbarState extends State<MechTapbar> {
               child: InkWell(onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return MechEditProfile();
+                    return MechProfile();
                   },
                 ));
               },

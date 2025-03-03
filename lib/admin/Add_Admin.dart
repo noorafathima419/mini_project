@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import 'BottumNavigationBar.dart';
 
@@ -17,10 +18,16 @@ class AddAdmin extends StatefulWidget {
 
 class _AddAdminState extends State<AddAdmin> {
   final form_key = GlobalKey<FormState>();
+  String formattedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String formattedTime = DateFormat('kk:mm').format(DateTime.now());
   Future<void> admindata() async {
-    FirebaseFirestore.instance
-        .collection("admin_details")
-        .add({"Heading": matterctrl.text, "content": contentctrl.text});
+    FirebaseFirestore.instance.collection("admin_details").add({
+      "Heading": matterctrl.text,
+      "content": contentctrl.text,
+      "Date": formattedDate,
+      "Time": formattedTime
+    });
+    Navigator.pop(context);
   }
 
   TextEditingController matterctrl = TextEditingController();
@@ -108,10 +115,9 @@ class _AddAdminState extends State<AddAdmin> {
                 vertical: 20.h,
               ),
               child: ElevatedButton(
-                onPressed: () async {
+                onPressed: ()  {
                   if (form_key.currentState!.validate()) {
-                    await admindata();
-                    Navigator.pop(context);
+                     admindata();
                   }
                 },
                 style: ElevatedButton.styleFrom(

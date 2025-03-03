@@ -76,15 +76,12 @@ class _UserLoginState extends State<UserLogin> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 150.w, top: 20.h),
-                      child: Text(
-                        "Login",
-                        style: GoogleFonts.poppins(
-                            fontSize: 25.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700),
-                      ),
+                    Text(
+                      "Login",
+                      style: GoogleFonts.poppins(
+                          fontSize: 25.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
                     )
                   ],
                 ),
@@ -169,30 +166,27 @@ class _UserLoginState extends State<UserLogin> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 100.w, top: 20.h),
-                      child: InkWell(
-                        onTap: () {
-                          if (form_key.currentState!.validate()) {
-                            User_login();
-                          }
-                        },
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              "LOGIN",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  fontSize: 25.sp),
-                            ),
+                    InkWell(
+                      onTap: () {
+                        if (form_key.currentState!.validate()) {
+                          User_login();
+                        }
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            "LOGIN",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                                fontSize: 25.sp),
                           ),
-                          width: 200.w,
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              color: Colors.blue),
                         ),
+                        width: 200.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.blue),
                       ),
                     )
                   ],

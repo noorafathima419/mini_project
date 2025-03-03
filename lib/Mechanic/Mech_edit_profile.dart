@@ -11,50 +11,35 @@ class MechEditProfile extends StatefulWidget {
 }
 
 class _MechEditProfileState extends State<MechEditProfile> {
-
   @override
   Widget build(BuildContext context) {
     final form_key = GlobalKey<FormState>();
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios_new_sharp),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.edit))
+        ],
+      ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 20.h),
-                child: Container(
-                  child: Icon(
-                    Icons.arrow_back_ios_sharp,
-                    size: 35,
-                  ),
-                ),
+          Center(
+            child: CircleAvatar(
+              child: Image(
+                image: AssetImage("assets/men.png"),
+                fit: BoxFit.cover,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.h, left: 320.w),
-                child: Icon(
-                  Icons.edit_calendar_sharp,
-                  size: 35,
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 140.w,
-                  ),
-                  child: CircleAvatar(
-                    child: Image(
-                      image: AssetImage("assets/men.png"),
-                      fit: BoxFit.cover,
-                    ),
-                    radius: 60.r,
-                  ),
-                ),
-              )
-            ],
+              radius: 60.r,
+            ),
           ),
           Row(
             children: [
@@ -223,7 +208,8 @@ class _MechEditProfileState extends State<MechEditProfile> {
                 ),
               ),
             ],
-          ), Row(
+          ),
+          Row(
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 100.w, top: 50.h),
@@ -231,7 +217,6 @@ class _MechEditProfileState extends State<MechEditProfile> {
                   onTap: () {
                     if (form_key.currentState!.validate()) {
                       print("object");
-
                     }
                   },
                   child: Container(

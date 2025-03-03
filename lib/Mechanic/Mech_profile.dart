@@ -26,7 +26,8 @@ class _MechProfileState extends State<MechProfile> {
   Future<void> mech_id() async {
     SharedPreferences data1 = await SharedPreferences.getInstance();
     setState(() {
-      id = data1.getString("mechid");
+      id = data1.getString("mechanic_id");
+      print(id);
 
 
     });
@@ -66,327 +67,288 @@ class _MechProfileState extends State<MechProfile> {
               }
               final mech = snapshot.data!.data() as Map<String, dynamic>;
 
-              return Column(
-                children: [Row(children: [
+              return ListView(
+                children: [InkWell(onTap:() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return MechEditProfile();
+                  },));
+                } ,
+                  child: CircleAvatar(
+                    child: Image(
+                      image: AssetImage("assets/men.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    radius: 70.r,
+                  ),
+                ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(left: 30.w, top: 10.h),
+                         child: Text(
+                           "Name",
+                           style: GoogleFonts.poppins(
+                               fontSize: 18.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                           child: Text(
+                             mech["name"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(
+                           left: 30.w,
+                         ),
+                         child: Text(
+                           "Phone number",
+                           style: GoogleFonts.poppins(
+                               fontSize: 20.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                           child: Text(
+                             mech["number"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(
+                           left: 30.w,
+                         ),
+                         child: Text(
+                           "Email address",
+                           style: GoogleFonts.poppins(
+                               fontSize: 20.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                           child: Text(
+                             mech["email"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(
+                           left: 30.w,
+                         ),
+                         child: Text(
+                           "Work experience",
+                           style: GoogleFonts.poppins(
+                               fontSize: 20.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                           child: Text(
+                             mech["experience"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(left: 30.w),
+                         child: Text(
+                           "Work shop name",
+                           style: GoogleFonts.poppins(
+                               fontSize: 20.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                           child: Text(
+                             mech["shop"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Container(
+                       child: Padding(
+                         padding: EdgeInsets.only(left: 30.w),
+                         child: Text(
+                           "Your location",
+                           style: GoogleFonts.poppins(
+                               fontSize: 20.sp, fontWeight: FontWeight.w500),
+                         ),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(
+                   children: [
+                     Padding(
+                       padding: EdgeInsets.only(left: 30.w),
+                       child: Container(
+                         child: Padding(
+                           padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                           child: Text(
+                             mech["location"] ?? "no data found",
+                             style: GoogleFonts.poppins(
+                                 fontSize: 18.sp,
+                                 fontWeight: FontWeight.normal,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                         height: 50.h,
+                         width: 350.w,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.r),
+                             color: Colors.white),
+                       ),
+                     )
+                   ],
+                 ),
+                 Row(children: [
                    Padding(
-                            padding: EdgeInsets.only(
-                              left: 140.w,
-                            ),
-                            child: CircleAvatar(
-                              child: Image(
-                                image: AssetImage("assets/men.png"),
-                                fit: BoxFit.cover,
-                              ),
-                              radius: 70.r,
-                            ),
-                          ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 30.w, top: 10.h),
-                            child: Text(
-                              "Name",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["name"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 30.w),
-                            child: Text(
-                              "Username",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["username"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: 30.w,
-                            ),
-                            child: Text(
-                              "Phone number",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["number"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: 30.w,
-                            ),
-                            child: Text(
-                              "Email address",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["email"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: 30.w,
-                            ),
-                            child: Text(
-                              "Work experience",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["experience"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 30.w),
-                            child: Text(
-                              "Work shop name",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 10.h, left: 20.w),
-                              child: Text(
-                                mech["shopname"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 30.w),
-                            child: Text(
-                              "Your location",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 30.w),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 20.h, left: 20.w),
-                              child: Text(
-                                mech["location"] ?? "no data found",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.grey),
-                              ),
-                            ),
-                            height: 50.h,
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 90, top: 100),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) {
-                                return MechTapbar();
-                              },
-                            ));
-                          },
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                "Submit",
-                                style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20),
-                              ),
-                            ),
-                            height: 50,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff2357D9)),
-                          ),
-                        ),
-                      ),
+                     padding: EdgeInsets.only(left: 90, top: 100),
+                     child: InkWell(
+                       onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                           builder: (context) {
+                             return MechTapbar();
+                           },
+                         ));
+                       },
+                       child: Container(
+                         child: Center(
+                           child: Text(
+                             "Submit",
+                             style: GoogleFonts.poppins(
+                                 color: Colors.white,
+                                 fontWeight: FontWeight.w600,
+                                 fontSize: 20),
+                           ),
+                         ),
+                         height: 50,
+                         width: 250,
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10),
+                             color: Color(0xff2357D9)),
+                       ),
+                     ),
+                   ),
 
 
-                ],
+                                ],
 
-               )
-              ])]
+                               )]
               );
             }
      )
